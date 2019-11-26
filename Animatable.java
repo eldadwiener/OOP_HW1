@@ -1,5 +1,5 @@
-package OOP_HW1;
-//TODO: change it to: homework1
+package homework1;
+
 import java.awt.Rectangle;
 
 /**
