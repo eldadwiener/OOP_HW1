@@ -1,4 +1,5 @@
-package homework1;
+package OOP_HW1;
+//TODO: change it to: homework1
 
 import java.awt.*;
 import java.awt.event.*;
