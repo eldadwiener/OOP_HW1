@@ -14,17 +14,22 @@ public abstract class Shape implements Cloneable {
 	private Color color;
 
 	
-	// TODO: Write Abstraction Function
+	// Abs. Function:
+	// represents a shape with:
+	//		top left corner of the bounding rectangle of the shape at this.location and
+	// 		color this.color
 	
-	// TODO: Write Representation Invariant
-	
-	
+	// Rep. Invariant:
+	// location != null && location.x >= 0 && location.y >= 0
+	// color != null
+
 	/**
 	 * @effects Initializes this with a a given location and color.
 	 */
     public Shape(Point location, Color color) {
     	setLocation(location);
     	setColor(color);
+    	checkRep();
     }
 
 
@@ -32,9 +37,8 @@ public abstract class Shape implements Cloneable {
      * @return the top left corner of the bounding rectangle of this.
      */
     public Point getLocation() {
-    	// TODO: Implement this method
-    	
-    	
+    	checkRep();
+    	return (Point)location.clone();
     }
 
 
@@ -44,7 +48,9 @@ public abstract class Shape implements Cloneable {
      * 			returns location after call has completed.
      */
     public void setLocation(Point location) {
+    	checkRep();
     	this.location = (Point)location.clone();
+    	checkRep();
     }
 
 
@@ -72,6 +78,7 @@ public abstract class Shape implements Cloneable {
      * 		   this and false otherwise.
      */
     public boolean contains(Point point) {
+    	checkRep();
     	return getBounds().contains(point);
     }
         
@@ -80,6 +87,7 @@ public abstract class Shape implements Cloneable {
      * @return color of this.
      */
     public Color getColor() {
+    	checkRep();
     	return color;
     }
 
@@ -89,7 +97,9 @@ public abstract class Shape implements Cloneable {
      * @effects Sets color of this.
      */
     public void setColor(Color color) {
+    	checkRep();
     	this.color = color;
+    	checkRep();
     }
 
 
@@ -104,8 +114,22 @@ public abstract class Shape implements Cloneable {
      * @effects Creates and returns a copy of this.
      */
     public Object clone() {
-    	// TODO: Implement this method
-    	
-
+    	checkRep();
+    	Shape clonedShape = null;
+    	try {
+    		clonedShape = (Shape)super.clone();
+    	}
+    	catch (CloneNotSupportedException e) {
+    		// this shouldn't happen, since we are Cloneable
+    		assert (false);
+		}
+    	clonedShape.setLocation((Point)location.clone());
+    	clonedShape.setColor(color);
+    	return clonedShape;
+    }
+    
+    private void checkRep() {
+    	assert ( (color != null) && (location != null)
+    			&& (location.getX() >= 0) && (location.getY() >= 0) );
     }
 }
