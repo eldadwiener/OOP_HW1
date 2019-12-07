@@ -3,8 +3,10 @@ package homework1;
 import java.awt.*;
 import java.util.Random;
 
+import homework1.Shape;
+
 enum BoundsOverflow{
-	NONE, HORIZONAL, VERTICAL, BOTH; 
+	NONE, HORIZONTAL, VERTICAL, BOTH; 
 }
 /**
  * A LocationChaningShape is a Shape that can change its location using its step()
@@ -15,15 +17,19 @@ enum BoundsOverflow{
  */
 public abstract class LocationChangingShape extends Shape implements Animatable {
 
-	// TODO: Write Abstraction Function
+	// Abs. Function:
+	// represents a LocationChangingShape with velocity when:
+	//		horizontal Velocity at this.horizontalVelocity and
+	// 		vertical Velocity this.verticalVelocity
 	
-	// TODO: Write Representation Invariant
+	// Rep. Invariant:
+	// no Invariants
 	
-	private int horizonalVelocity;
+	private int horizontalVelocity;
 	private int verticalVelocity;
 	
-	private static final int MIN_VELOCUTY = -5;
-	private static final int VELOCUTY_RANGE = 10;
+	private static final int MIN_VELOCITY = -5;
+	private static final int VELOCITY_RANGE = 10;
 	private static final int NON_VELOCITY = 0;
 	
 	/**
@@ -36,10 +42,10 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	super(location, color);
     	Random rand = new Random();
     	do {
-    		horizonalVelocity = MIN_VELOCUTY + rand.nextInt(VELOCUTY_RANGE);
-    	} while (horizonalVelocity == NON_VELOCITY );
+    		horizontalVelocity = MIN_VELOCITY + rand.nextInt(VELOCITY_RANGE);
+    	} while (horizontalVelocity == NON_VELOCITY );
     	do {
-    		verticalVelocity = MIN_VELOCUTY + rand.nextInt(VELOCUTY_RANGE);
+    		verticalVelocity = MIN_VELOCITY + rand.nextInt(VELOCITY_RANGE);
     	} while (verticalVelocity == NON_VELOCITY );
     }
 
@@ -47,7 +53,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      * @return the horizontal velocity of this.
      */
     public int getVelocityX() {
-    	return horizonalVelocity;
+    	return horizontalVelocity;
     }
 
     /**
@@ -63,7 +69,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      * 			vertical velocity of this to velocityY.
      */
     public void setVelocity(int velocityX, int velocityY) {
-    	horizonalVelocity = velocityX;
+    	horizontalVelocity = velocityX;
     	verticalVelocity = velocityY;
     }
 
@@ -85,14 +91,14 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      * 			p = p + v
      */
     public void step(Rectangle bound) {
-    	BoundsOverflow  boundsOverflowResult = calcBounds (bound);
+    	BoundsOverflow  boundsOverflowResult = calcBoundsOverflow (bound);
     	switch (boundsOverflowResult) {
     	case BOTH:
-    		horizonalVelocity *= -1;
+    		horizontalVelocity *= -1;
     		verticalVelocity *= -1;
     		break;
-    	case HORIZONAL:
-    		horizonalVelocity *= -1;
+    	case HORIZONTAL:
+    		horizontalVelocity *= -1;
     		break;
     	case VERTICAL:
     		verticalVelocity *= -1;
@@ -100,12 +106,12 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	default:
     		break;	
     	}
-    	Point newLocation = new Point((int)(getLocation().getX()) + horizonalVelocity,
+    	Point newLocation = new Point((int)(getLocation().getX()) + horizontalVelocity,
     								  (int)(getLocation().getY()) + verticalVelocity);
     	setLocation(newLocation);
     }
     
-    private BoundsOverflow calcBounds(Rectangle bound) {
+    private BoundsOverflow calcBoundsOverflow(Rectangle bound) {
     	//prepare the parameters
     	boolean xOverflow = false;
     	boolean yOverflow = false;
@@ -117,9 +123,9 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     	double yLocation =  getLocation().getY();
     	
     	//check for X overflow
-    	if ((xLocation < 0) || (xLocation + horizonalVelocity < 0) ||
+    	if ((xLocation < 0) || (xLocation + horizontalVelocity < 0) ||
     		(xLocation > boundWidth - shapeWidth) || 
-    		(xLocation + horizonalVelocity > boundWidth - shapeWidth)) {
+    		(xLocation + horizontalVelocity > boundWidth - shapeWidth)) {
     		xOverflow = true;
     	}
     	//check for Y overflow
@@ -133,7 +139,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     		return BoundsOverflow.BOTH;
     	}
     	if (xOverflow) {//if just X
-    		return BoundsOverflow.HORIZONAL;
+    		return BoundsOverflow.HORIZONTAL;
     	}
     	if (yOverflow) {//if just Y
     		return BoundsOverflow.VERTICAL;
@@ -146,4 +152,16 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
      * @effects Creates and returns a copy of this.
      */
     public Object clone() {
+    	LocationChangingShape clonedShape = null;
+    	clonedShape = (LocationChangingShape)super.clone();
+    	clonedShape.setVelocity(horizontalVelocity, verticalVelocity);
+    	return clonedShape;
+    }
+    
+    /* TODO: need check_rep if there is no invariants?
+	    private void checkRep() {
+	    //super.check_rep(); //no needed X 2 ...
+    	assert ( true );
+    }
+     */
 }
