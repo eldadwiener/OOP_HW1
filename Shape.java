@@ -128,6 +128,9 @@ public abstract class Shape implements Cloneable {
     	return clonedShape;
     }
     
+	/**
+	 * @effects checks the representation invariant of this, and aborts if it is fault. (assert)
+	 */
     private void checkRep() {
     	assert ( (color != null) && (location != null)
     			&& (location.getX() >= 0) && (location.getY() >= 0) );

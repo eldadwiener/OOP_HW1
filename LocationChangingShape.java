@@ -18,7 +18,7 @@ enum BoundsOverflow{
 public abstract class LocationChangingShape extends Shape implements Animatable {
 
 	// Abs. Function:
-	// represents a LocationChangingShape with velocity when:
+	// represents a Shape with velocity when:
 	//		horizontal Velocity at this.horizontalVelocity and
 	// 		vertical Velocity this.verticalVelocity
 	
