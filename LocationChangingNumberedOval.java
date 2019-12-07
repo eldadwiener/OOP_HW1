@@ -32,7 +32,13 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 		checkRep();
 	}
 	
-
+	/**
+	 * @effects resets the ID counter for numbered ovals in the system 
+	 */
+	static public void clearCount() {
+		count = 0;
+	}
+	
     /**
      * @modifies g
      * @effects Draws this onto g.

@@ -2,6 +2,10 @@ package homework1;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.*;
 
 /**
@@ -28,7 +32,7 @@ public class Animator extends JFrame implements ActionListener {
 	// shapes that have been added to this
 	
 	// TODO: Add and initialize a container of shapes called shapes.
-	
+	private List<Animatable> shapes;
 
 	/**
 	 * @modifies this
@@ -38,6 +42,7 @@ public class Animator extends JFrame implements ActionListener {
 	 */
 	public Animator() {
 		super("Animator");
+		shapes = new ArrayList<Animatable>();
 
 		// create main panel and menubar
 		mainPanel = (JPanel)createMainPanel();
@@ -51,9 +56,11 @@ public class Animator extends JFrame implements ActionListener {
                 if (animationCheckItem.isSelected()) {
                 	// TODO: Add code for making one animation step for all
                 	// 		 shapes in this
-
-                	
-
+                	Iterator<Animatable> iter = shapes.iterator(); 
+                	while (iter.hasNext()) {
+                		Animatable shape = iter.next();
+                		shape.step(getContentPane().getBounds());
+                	}
             		repaint();	// make sure that the shapes are redrawn
                 }
             }
@@ -132,6 +139,13 @@ public class Animator extends JFrame implements ActionListener {
 		super.paint(g);
 
 		//TODO: Add code for drawing all shapes in this
+		Iterator<Animatable> iter = shapes.iterator();
+		while (iter.hasNext()) {
+			// TODO: how do we know this can be a shape
+			// TODO: use g or use getContentPane().getGraphics()
+			Shape next = (Shape)iter.next();
+			next.draw(getContentPane().getGraphics());
+		}
 
 		
 	}
@@ -151,6 +165,7 @@ public class Animator extends JFrame implements ActionListener {
 			repaint();
 			
 			//TODO  Add code for number of LocationChangingNumerOval = 0
+			LocationChangingNumberedOval.clearCount();
 		}
 
 		// File->Exit: close application
