@@ -21,6 +21,10 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 	static private int count = 0;
 	private int ID;
 	
+	/**
+	 * @requires height > 0, width > 0.
+	 * @effects Initializes an Oval with a given location, color, height and width and unique ID number
+	 */
 	public LocationChangingNumberedOval(Point location, Color color, int height, int width) {
 		super(location, color, height, width);
 		++count;
