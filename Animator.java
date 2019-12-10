@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.Random;
 import javax.swing.*;
 
 /**
@@ -19,6 +19,11 @@ public class Animator extends JFrame implements ActionListener {
 	// preferred frame width and height.
 	private static final int WINDOW_WIDTH = 600;
 	private static final int WINDOW_HEIGHT = 400;
+	private static final int HEIGHTRANGE = 2*WINDOW_HEIGHT/10;
+	private static final int MINHEIGHT= WINDOW_HEIGHT/10;
+	private static final int WIDTHRANGE = 2*WINDOW_WIDTH/10;
+	private static final int MINWIDTH = WINDOW_WIDTH/10;
+	private static final int MAXROTATION = 360;
 
 	// graphical components
 	private JMenuBar menuBar;
@@ -185,8 +190,40 @@ public class Animator extends JFrame implements ActionListener {
 			//		 its location and size are randomly selected &&
 			//		 1/10*WINDOW_WIDTH <= shape.width < 3/10*WINDOW_WIDTH &&
 			//		 1/10*WINDOW_HEIGHT <= shape.height < 3/10*WINDOW_HEIGHT
-		
+			Random rand = new Random();
+
+			// generate shape size
+			int height = MINHEIGHT + rand.nextInt(HEIGHTRANGE);
+			int width = MINWIDTH + rand.nextInt(WIDTHRANGE);
 			
+			// generate shape location, already in bounding window
+			int x = rand.nextInt(WINDOW_WIDTH - width);
+			int y = rand.nextInt(WINDOW_HEIGHT - height);
+			Point location = new Point(x,y);
+			
+			// generate shape color
+			Color color; 
+			do {
+				color = new Color(rand.nextInt());
+			} while (!color.equals(Color.WHITE));
+
+			
+			// generate the needed shape
+			if (source.equals(rectangleItem)) {
+				shapes.add(new LocationChangingRectangle(location, color, height, width));
+			} else if (source.equals(roundedRectangleItem)) {
+				shapes.add(new LocationChangingRoundedRetangle(location, color, height, width));
+			} else if (source.equals(ovalItem)) {
+				shapes.add(new LocationChangingOval(location, color, height, width));
+			} else if (source.equals(numberedOvalItem)) {
+				shapes.add(new LocationChangingNumberedOval(location, color, height, width));
+			} else {
+				// sector, need to generate random angles for it
+				int startAngle = rand.nextInt(MAXROTATION);
+				int arcAngle = rand.nextInt(MAXROTATION);
+				shapes.add(new AngleChangingSector(location, color, height, width, startAngle, arcAngle));
+			}
+
 			repaint();
 		}
 
