@@ -1,6 +1,7 @@
 package homework1;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -50,6 +51,7 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 		// find middle of bounding square
 		Rectangle frame = getBounds();
 		g.setColor(Color.WHITE);
+		g.setFont(new Font(g.getFont().getFontName(),Font.PLAIN, 15));
 		g.drawString(Integer.toString(ID), (int)frame.getCenterX(), (int)frame.getCenterY());
 		checkRep();
 	}

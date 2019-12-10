@@ -64,7 +64,7 @@ public class Animator extends JFrame implements ActionListener {
                 	Iterator<Animatable> iter = shapes.iterator(); 
                 	while (iter.hasNext()) {
                 		Animatable shape = iter.next();
-                		shape.step(getContentPane().getBounds());
+                		shape.step(mainPanel.getBounds());
                 	}
             		repaint();	// make sure that the shapes are redrawn
                 }
@@ -197,15 +197,16 @@ public class Animator extends JFrame implements ActionListener {
 			int width = MINWIDTH + rand.nextInt(WIDTHRANGE);
 			
 			// generate shape location, already in bounding window
-			int x = rand.nextInt(WINDOW_WIDTH - width);
-			int y = rand.nextInt(WINDOW_HEIGHT - height);
+			Rectangle bounds = mainPanel.getBounds();
+			int x = rand.nextInt((int)bounds.getWidth() - width);
+			int y = rand.nextInt((int)bounds.getHeight() - height);
 			Point location = new Point(x,y);
 			
 			// generate shape color
 			Color color; 
 			do {
 				color = new Color(rand.nextInt());
-			} while (!color.equals(Color.WHITE));
+			} while (color.equals(Color.WHITE));
 
 			
 			// generate the needed shape
@@ -225,6 +226,8 @@ public class Animator extends JFrame implements ActionListener {
 			}
 
 			repaint();
+			System.out.println("x,y : " + x + "," + y);
+			System.out.println("width,height : " + width + "," + height);
 		}
 
 		// Help->About : show about message dialog

@@ -31,7 +31,7 @@ public class LocationChangingOval extends LocationChangingShape {
 	 */
 	public LocationChangingOval(Point location, Color color, int height, int width) {
 		super(location, color);
-		dim = new Dimension(height,width);
+		dim = new Dimension(width, height);
 		checkRep();
 	}
 

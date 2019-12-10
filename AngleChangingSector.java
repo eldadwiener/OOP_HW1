@@ -38,7 +38,7 @@ public class AngleChangingSector extends Shape implements Animatable {
 		super(location, color);
 		assert (height > 0 && width > 0 && startAngle >= 0 && arcAngle > 0): 
 			"Bad input parameters to AngleChangingSector constructor";
-		dim = new Dimension(height,width);
+		dim = new Dimension(width, height);
 		startingAngle = startAngle % FULLROTATION;
 		this.arcAngle = arcAngle % FULLROTATION;
 		checkRep();

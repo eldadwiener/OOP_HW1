@@ -33,6 +33,6 @@ public class LocationChangingRoundedRetangle extends LocationChangingRectangle {
 		Point topLeft = getLocation();
 		g.setColor(getColor());
 		Dimension dim = getDimension();
-		g.fillRoundRect((int)topLeft.getX(), (int)topLeft.getY(), (int)dim.getWidth(), (int)dim.getHeight(), 1, 1);
+		g.fillRoundRect((int)topLeft.getX(), (int)topLeft.getY(), (int)dim.getWidth(), (int)dim.getHeight(), 20, 20);
 	}
 }
