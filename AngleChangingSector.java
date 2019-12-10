@@ -105,6 +105,6 @@ public class AngleChangingSector extends Shape implements Animatable {
 	 */
     private void checkRep() {
     	assert (dim.getHeight() > 0 && dim.getWidth() > 0 &&
-    			startingAngle >= 0 && arcAngle > 0);
+    			startingAngle >= 0 && arcAngle > 0): "failed at AngleChangingSector.checkRep()";
 	}
 }

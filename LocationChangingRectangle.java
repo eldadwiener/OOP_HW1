@@ -84,6 +84,7 @@ public class LocationChangingRectangle extends LocationChangingShape {
 		checkRep();
     	LocationChangingRectangle clonedRectangle = null;
     	clonedRectangle = (LocationChangingRectangle)super.clone();
+    	//deep copy
     	clonedRectangle.dim = (Dimension)dim.clone();
     	return clonedRectangle;
 	}
@@ -96,6 +97,6 @@ public class LocationChangingRectangle extends LocationChangingShape {
 	 * @effects checks the representation invariant of this, and aborts if it is fault. (assert)
 	 */
     private void checkRep() {
-    	assert (dim.getHeight() > 0 && dim.getWidth() > 0);
+    	assert (dim.getHeight() > 0 && dim.getWidth() > 0) : "failed at LocationChangingRectangle.checkRep()";
     	}
 }

@@ -64,7 +64,7 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 		checkRep();
     	LocationChangingNumberedOval clonedOval = null;
     	clonedOval = (LocationChangingNumberedOval)super.clone();
-    	//clonedOval.ID = ID; TODO: no needed
+    	//no needed for deep copy
     	return clonedOval;
 	}
 
@@ -72,7 +72,7 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 	 * @effects checks the representation invariant of this, and aborts if it is fault. (assert)
 	 */
     private void checkRep() {
-    	assert (count >= 0 && ID > 0);
+    	assert (count >= 0 && ID > 0) : "failed at LocationChangingRoundedRetangle.checkRep()";
     	}
 
 }

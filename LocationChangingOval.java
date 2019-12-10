@@ -43,6 +43,7 @@ public class LocationChangingOval extends LocationChangingShape {
      * 			this is not modified, throws ImpossibleSizeException
      * 			(the exception suggests an alternative dimension that is
      * 			 supported by this).
+     * @throws ImpossibleSizeException if the new size is illegal
      */
 	@Override
 	public void setSize(Dimension dimension) throws ImpossibleSizeException {
@@ -84,6 +85,7 @@ public class LocationChangingOval extends LocationChangingShape {
 		checkRep();
     	LocationChangingOval clonedOval = null;
     	clonedOval = (LocationChangingOval)super.clone();
+    	//deep copy
     	clonedOval.dim = (Dimension)dim.clone();
     	return clonedOval;
 	}
@@ -92,6 +94,6 @@ public class LocationChangingOval extends LocationChangingShape {
 	 * @effects checks the representation invariant of this, and aborts if it is fault. (assert)
 	 */
     private void checkRep() {
-    	assert (dim.getHeight() > 0 && dim.getWidth() > 0);
+    	assert (dim.getHeight() > 0 && dim.getWidth() > 0) : "failed at LocationChangingOval.checkRep()";
     	}
 }

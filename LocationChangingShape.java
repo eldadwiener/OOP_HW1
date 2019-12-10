@@ -154,14 +154,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     public Object clone() {
     	LocationChangingShape clonedShape = null;
     	clonedShape = (LocationChangingShape)super.clone();
-    	//clonedShape.setVelocity(horizontalVelocity, verticalVelocity); TODO: no needed
     	return clonedShape;
     }
     
-    /* TODO: need check_rep if there is no invariants?
-	    private void checkRep() {
-	    //super.check_rep(); //no needed X 2 ...
-    	assert ( true );
-    }
-     */
 }

@@ -121,10 +121,12 @@ public abstract class Shape implements Cloneable {
     	}
     	catch (CloneNotSupportedException e) {
     		// this shouldn't happen, since this is Cloneable
-    		assert (false);
+    		assert (false): "Got inside the CloneNotSupportedException "
+    				+ "exception of Shape.clone()";
 		}
-    	clonedShape.setLocation((Point)location.clone());
-    	clonedShape.setColor(color);
+    	//deep copy
+    	clonedShape.location = (Point)location.clone();
+    	clonedShape.color = color;
     	return clonedShape;
     }
     
@@ -133,6 +135,6 @@ public abstract class Shape implements Cloneable {
 	 */
     private void checkRep() {
     	assert ( (color != null) && (location != null)
-    			&& (location.getX() >= 0) && (location.getY() >= 0) );
+    			&& (location.getX() >= 0) && (location.getY() >= 0) ) : "failed at Shape.checkRep()";
     }
 }

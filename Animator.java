@@ -36,7 +36,6 @@ public class Animator extends JFrame implements ActionListener {
 
 	// shapes that have been added to this
 	
-	// TODO: Add and initialize a container of shapes called shapes.
 	private List<Animatable> shapes;
 
 	/**
@@ -59,8 +58,6 @@ public class Animator extends JFrame implements ActionListener {
         Timer timer = new Timer(40, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 if (animationCheckItem.isSelected()) {
-                	// TODO: Add code for making one animation step for all
-                	// 		 shapes in this
                 	Iterator<Animatable> iter = shapes.iterator(); 
                 	while (iter.hasNext()) {
                 		Animatable shape = iter.next();
@@ -143,11 +140,8 @@ public class Animator extends JFrame implements ActionListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		//TODO: Add code for drawing all shapes in this
 		Iterator<Animatable> iter = shapes.iterator();
 		while (iter.hasNext()) {
-			// TODO: how do we know this can be a shape
-			// TODO: use g or use getContentPane().getGraphics()
 			Shape next = (Shape)iter.next();
 			next.draw(getContentPane().getGraphics());
 		}
@@ -169,7 +163,6 @@ public class Animator extends JFrame implements ActionListener {
 			shapes.clear();
 			repaint();
 			
-			//TODO  Add code for number of LocationChangingNumerOval = 0
 			LocationChangingNumberedOval.clearCount();
 		}
 
@@ -185,11 +178,6 @@ public class Animator extends JFrame implements ActionListener {
       		 	 (source.equals(numberedOvalItem)) ||
       		 	 (source.equals(sectorItem))) {
 
-			// TODO: Add code for creating the appropriate shape such that:
-			// 		 it is completely inside the window's bounds &&
-			//		 its location and size are randomly selected &&
-			//		 1/10*WINDOW_WIDTH <= shape.width < 3/10*WINDOW_WIDTH &&
-			//		 1/10*WINDOW_HEIGHT <= shape.height < 3/10*WINDOW_HEIGHT
 			Random rand = new Random();
 
 			// generate shape size
@@ -226,8 +214,6 @@ public class Animator extends JFrame implements ActionListener {
 			}
 
 			repaint();
-			System.out.println("x,y : " + x + "," + y);
-			System.out.println("width,height : " + width + "," + height);
 		}
 
 		// Help->About : show about message dialog
