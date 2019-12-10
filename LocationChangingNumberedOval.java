@@ -62,7 +62,7 @@ public class LocationChangingNumberedOval extends LocationChangingOval {
 		checkRep();
     	LocationChangingNumberedOval clonedOval = null;
     	clonedOval = (LocationChangingNumberedOval)super.clone();
-    	clonedOval.ID = ID;
+    	//clonedOval.ID = ID; TODO: no needed
     	return clonedOval;
 	}
 

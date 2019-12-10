@@ -120,7 +120,7 @@ public abstract class Shape implements Cloneable {
     		clonedShape = (Shape)super.clone();
     	}
     	catch (CloneNotSupportedException e) {
-    		// this shouldn't happen, since we are Cloneable
+    		// this shouldn't happen, since this is Cloneable
     		assert (false);
 		}
     	clonedShape.setLocation((Point)location.clone());

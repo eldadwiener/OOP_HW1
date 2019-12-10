@@ -91,6 +91,7 @@ public class LocationChangingRectangle extends LocationChangingShape {
 	public Dimension getDimension() {
 		return (Dimension) dim.clone();
 	}
+	
 	/**
 	 * @effects checks the representation invariant of this, and aborts if it is fault. (assert)
 	 */

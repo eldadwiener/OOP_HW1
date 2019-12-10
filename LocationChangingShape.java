@@ -29,7 +29,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
 	private int verticalVelocity;
 	
 	private static final int MIN_VELOCITY = -5;
-	private static final int VELOCITY_RANGE = 10;
+	private static final int VELOCITY_RANGE = 11;
 	private static final int NON_VELOCITY = 0;
 	
 	/**
@@ -154,7 +154,7 @@ public abstract class LocationChangingShape extends Shape implements Animatable 
     public Object clone() {
     	LocationChangingShape clonedShape = null;
     	clonedShape = (LocationChangingShape)super.clone();
-    	clonedShape.setVelocity(horizontalVelocity, verticalVelocity);
+    	//clonedShape.setVelocity(horizontalVelocity, verticalVelocity); TODO: no needed
     	return clonedShape;
     }
     
